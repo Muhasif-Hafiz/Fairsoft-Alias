@@ -50,9 +50,9 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="number">Number <font color='#FF0000'>*</font></string>
-    <string name="mail_id">Mail ID <font color='#FF0000'>*</font></string>
-    <string name="recovery_mail"> Recovery Mail ID <font color='#FF0000'>*</font></string>
-    <string name="recovery_number"> Recovery Number <font color='#FF0000'>*</font></string>
+    <string name="mail_id">Mail ID </string>
+    <string name="recovery_mail"> Recovery Mail ID</string>
+    <string name="recovery_number"> Recovery Number</string>
 
 
 </resources>

@@ -23,6 +23,7 @@ class UserDetailsActivity : AppCompatActivity() {
         binding = ActivityUserDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Function calls
         loadData()
         updateProfile()
         editProfilePicture()
@@ -31,13 +32,13 @@ class UserDetailsActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun loadData() {
-
+        // Here  we will get data from the API
         val data = getDataFromApi()
-        binding.etName.setText(" ${data.userName}")
-        binding.etNumber.setText(" ${data.mobile}")
-        binding.etMailId.setText(" ${data.mailId}")
+        binding.etName.setText("${data.userName}")
+        binding.etNumber.setText("${data.mobile}")
+        binding.etMailId.setText("${data.mailId}")
         binding.etRecoveryPhone.setText("${data.recoveryMobile}")
-        binding.etRecoveryEmail.setText(" ${data.recoveryMail}")
+        binding.etRecoveryEmail.setText("${data.recoveryMail}")
         loadImage(data.imageLink.toString())
         managePhoneRecovery(data)
         manageMailRecovery(data)
@@ -102,7 +103,8 @@ class UserDetailsActivity : AppCompatActivity() {
 
     private fun loadImage(url: String) {
 
-        Glide.with(this)
+        Glide
+            .with(this)
             .load(url)
             .placeholder(R.drawable.user_profile)
             .error(R.drawable.user_profile)
