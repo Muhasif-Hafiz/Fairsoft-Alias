@@ -20,6 +20,7 @@
     <color name="notVerifiedText">#C62828</color> <!-- Dark red -->
     <color name="notVerifiedBackground">#FFEBEE</color> <!-- Light red tint -->
 
+    <color name = "ReferPrimary">#3385FF</color>
 
 
 

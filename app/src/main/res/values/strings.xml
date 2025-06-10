@@ -53,6 +53,17 @@
     <string name="mail_id">Mail ID </string>
     <string name="recovery_mail"> Recovery Mail ID</string>
     <string name="recovery_number"> Recovery Number</string>
+    <string name="back_button">Back Button</string>
+    <string name="invite_your_friends_to_earn_exciting_rewards">Invite your friends to earn exciting rewards!</string>
+    <string name="your_rewards">Your Rewards</string>
+    <string name="share_via">Share Via</string>
+    <string name="sms">SMS</string>
+    <string name="others">Others</string>
+    <string name="how_it_works">How It Works</string>
+    <string name="refer_amp_earn"><![CDATA[Refer & Earn]]></string>
+    <string name="rupees_symbol">₹</string>
+    <string name="arrow">Arrow</string>
+    <string name  = "demo_text"> This is a demon text thst we are using to test the refer and earn screen for the piurpoise pf mking the c]s creen smore beautiful and more v ibratnt dor the purpose of the making of the UI and i= the purpos eof of makeing th eCompany scrren for the Fairsoft </string>
 
 
 </resources>
