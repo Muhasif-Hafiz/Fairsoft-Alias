@@ -1,3 +1,4 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="spinner_dropdown_offset">60dp</dimen> />
 </resources>

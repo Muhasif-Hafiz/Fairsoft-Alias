@@ -28,5 +28,8 @@ class CenterActivity : AppCompatActivity() {
         binding.ReferAndEarn.setOnClickListener {
             startActivity(Intent(this, ReferAndEarnActivity::class.java))
         }
+        binding.AlternateNames.setOnClickListener {
+            startActivity(Intent(this, AlternateNamesActivity::class.java))
+        }
     }
 }

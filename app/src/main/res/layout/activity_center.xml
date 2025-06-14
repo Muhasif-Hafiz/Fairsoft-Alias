@@ -29,4 +29,13 @@
         android:backgroundTint="@color/blue500"
         android:text="Refer and Earn" />
 
+
+    <Button
+        android:id="@+id/AlternateNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/blue500"
+        android:text="Alternate Names" />
+
 </LinearLayout>

@@ -1,54 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical"
-    tools:context=".activity.ReferAndEarnActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
-    <!-- Header Section with Gradient Background -->
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.ReferAndEarnActivity"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:id="@+id/root_layout"
+    android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/gradient_refer_and_earn"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="20dp">
+        android:orientation="vertical">
 
-        <!-- Back Arrow -->
+        <!-- Header Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
-
-            <ImageView
-                android:id="@+id/iv_back_arrow"
-                android:layout_width="24dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:contentDescription="@string/back_button"
-                android:src="@drawable/ic_back" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="#F5F5F5"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:paddingStart="20dp"
+            android:paddingTop="40dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="16dp"
+                android:orientation="vertical">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+
+                    app:lottie_fileName="redeem_now.json"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    android:contentDescription="Gift Animation" />
+            </LinearLayout>
+
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/onest_bold"
-                android:text="@string/refer_amp_earn"
+                android:gravity="center"
+                android:text="Refer &amp; Earn"
                 android:textColor="@color/ReferPrimary"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -57,155 +58,354 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/onest_semibold"
-                android:text="@string/invite_your_friends_to_earn_exciting_rewards"
+                android:fontFamily="@font/onest_regular"
+                android:gravity="center"
+                android:text="Share the love and earn rewards together!"
                 android:textColor="#666666"
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- Divider Line -->
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CCCCCC" />
-    </LinearLayout>
-
-    <!-- Content Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- Reward Card -->
+        <!-- Rewards Card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/reward_card_background"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/white_card_background"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Rewards Info Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <!-- Your Rewards Section -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:src="@drawable/ic_trophy"
+                            android:contentDescription="Trophy" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/onest_semibold"
+                            android:text="Your Rewards"
+                            android:textColor="#999999"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/onest_bold"
+                        android:text="₹350"
+                        android:textColor="#333333"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Friends Referred Section -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:src="@drawable/group_of_people"
+                            android:contentDescription="People" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/onest_bold"
+                            android:text="3 Friends"
+                            android:textColor="@color/ReferPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/onest_regular"
+                        android:text="Successfully referred"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Redeem Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_redeem_now"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/green_button_background"
+                app:backgroundTint="#4CAF50"
+                android:fontFamily="@font/onest_bold"
+                android:text="🎁 Redeem Now →"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- How It Works Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/white_card_background"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_start"
+                    android:contentDescription="Star" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/onest_bold"
-                    android:text="@string/your_rewards"
-                    android:textColor="@color/ReferPrimary"
-                    android:textSize="14sp" />
+                    android:text="How it Works"
+                    android:textColor="#333333"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Step 1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/circle_blue_background"
+                    android:fontFamily="@font/onest_bold"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="4dp">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/onest_bold"
-                        android:text="@string/rupees_symbol"
-                        android:textColor="#000000"
-                        android:textSize="24sp"
+                        android:text="Share your code"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_Amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/onest_bold"
-                        android:text="350"
-                        android:textColor="#000000"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/onest_regular"
+                        android:text="Send your referral link via WhatsApp or SMS"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/arrow_right"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:contentDescription="@string/arrow"
-                android:src="@drawable/ic_arrow_right" />
+            <!-- Step 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/circle_purple_background"
+                    android:fontFamily="@font/onest_bold"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/onest_bold"
+                        android:text="Friend joins"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/onest_regular"
+                        android:text="They download and sign up using your code"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Step 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/circle_green_background"
+                    android:fontFamily="@font/onest_bold"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/onest_bold"
+                        android:text="Both get ₹100"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/onest_regular"
+                        android:text="Instant reward for you and your friend!"
+                        android:textColor="#666666"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Share Via Section -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+
             android:orientation="horizontal"
             android:gravity="center_vertical">
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/onest_bold"
                     android:text="@string/share_via"
                     android:textColor="#000000"
+                    android:layout_gravity="center"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-
                 <View
                     android:layout_width="60dp"
                     android:layout_height="2dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
                     android:background="#000000" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/onest_regular"
-                android:text="3 friends invited"
-                android:textColor="@color/ReferPrimary"
-                android:textSize="12sp" />
         </LinearLayout>
-
         <!-- Share Options -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="12dp"
             android:orientation="horizontal">
-
             <LinearLayout
+                android:layout_margin="12dp"
                 android:id="@+id/ll_whatsapp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
+                android:layout_weight="0.5"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
-
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:contentDescription="WhatsApp"
                     android:src="@drawable/ic_whatsapp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -215,25 +415,21 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/ll_sms"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
+                android:layout_weight="0.5"
+                android:layout_margin="12dp"
                 android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
-
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:contentDescription="@string/sms"
                     android:src="@drawable/ic_sms" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -243,25 +439,22 @@
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/ll_others"
                 android:layout_width="0dp"
+                android:layout_margin="12dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
+                android:layout_weight="0.5"
+                              android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
-
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:contentDescription="@string/others"
                     android:src="@drawable/ic_others" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -273,117 +466,5 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- How It Works Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/onest_bold"
-
-            android:text="@string/how_it_works"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="60dp"
-            android:layout_height="2dp"
-            android:paddingBottom="16dp"
-            android:layout_marginTop="4dp"
-            android:background="#000000" />
-
-        <!-- Step List -->
-        <LinearLayout
-            android:paddingTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Step 1 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingBottom="12dp">
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/circle_background"
-                    android:fontFamily="@font/onest_semibold"
-                    android:gravity="center"
-                    android:text="1"
-
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-
-                    android:textSize="14sp"
-                    android:fontFamily="@font/onest_regular"
-                    android:text="@string/demo_text"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <!-- Step 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingBottom="12dp">
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/circle_background"
-                    android:fontFamily="@font/onest_semibold"
-                    android:gravity="center"
-                    android:text="2"
-
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-
-                    android:textSize="14sp"
-                    android:fontFamily="@font/onest_regular"
-                    android:text="@string/demo_text"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <!-- Step 3 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/circle_background"
-                    android:fontFamily="@font/onest_semibold"
-                    android:gravity="center"
-                    android:text="3"
-
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-
-                    android:textSize="14sp"
-                    android:fontFamily="@font/onest_regular"
-                    android:text="@string/demo_text"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    </ScrollView>

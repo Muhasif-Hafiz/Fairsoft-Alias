@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AliasCreation"
         tools:targetApi="31">
         <activity
+            android:name=".activity.AlternateNamesActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ReferAndEarnActivity"
             android:exported="false" />
         <activity
