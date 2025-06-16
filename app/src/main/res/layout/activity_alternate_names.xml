@@ -80,6 +80,51 @@
                     android:paddingBottom="16dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputSublayout"
+                android:layout_marginTop="10dp"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/ReferPrimary"
+                app:boxStrokeWidth="2dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:hintTextColor="@color/ReferPrimary"
+                app:startIconDrawable="@drawable/ic_category"
+                android:hint="Select  Sub Category">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/spinnerItemsSubCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:fontFamily="@font/onest_regular"
+                    android:textSize="16sp"
+                    android:textColor="@color/ReferPrimary"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ProgressBar
+                android:layout_marginTop="10dp"
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/ReferPrimary"
+                android:layout_height="wrap_content">
+
+            </ProgressBar>
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
