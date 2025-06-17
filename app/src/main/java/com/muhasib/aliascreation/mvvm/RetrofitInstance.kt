@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
 
-    private const val BASE_URL = "https://qa.pilloo.ai/"
+    private const val BASE_URL = "https://qa.pilloo.ai/api/Pilloo/"
 
     val api: Api by lazy {
         Retrofit.Builder()

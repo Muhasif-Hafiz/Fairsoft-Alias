@@ -3,9 +3,6 @@
     android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:textSize="14sp"
-    android:fontFamily="@font/onest_regular"
-    android:textColor="@color/black"
-
-    android:backgroundTint="@color/white" />
+    android:padding="16dp"
+    android:textSize="16sp"
+    android:textColor="@android:color/black" />

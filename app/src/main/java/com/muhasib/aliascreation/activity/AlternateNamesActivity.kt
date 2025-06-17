@@ -3,6 +3,7 @@ package com.muhasib.aliascreation.activity
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -10,7 +11,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -25,6 +25,7 @@ import com.muhasib.aliascreation.R
 import com.muhasib.aliascreation.adapters.AlternateNameAdapter
 import com.muhasib.aliascreation.databinding.ActivityAlternateNamesBinding
 import com.muhasib.aliascreation.model.AlternateName
+import com.muhasib.aliascreation.model.Item
 import com.muhasib.aliascreation.mvvm.AccountRepository
 import com.muhasib.aliascreation.mvvm.AccountViewModel
 import com.muhasib.aliascreation.mvvm.AccountViewModelFactory
@@ -36,11 +37,11 @@ class AlternateNamesActivity : AppCompatActivity() {
     private lateinit var adapter: AlternateNameAdapter
     private lateinit var viewModel: AccountViewModel
 
-    private val categories = listOf("All", "Charges", "Items", "Accounts")
+    private val categories = listOf("Accounts", "Charges", "Items")
     private val subcategoriesMap = mutableMapOf(
         "Charges" to listOf("Tax", "Service Fee", "Discount"),
         "Items" to listOf("Stationery", "Groceries", "Utilities"),
-        "Accounts" to emptyList() // Will be populated from API
+        "Accounts" to emptyList<Item>()
     )
 
     @SuppressLint("SetTextI18n")
@@ -50,18 +51,18 @@ class AlternateNamesActivity : AppCompatActivity() {
         binding = ActivityAlternateNamesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Manual dependency injection
         val api = RetrofitInstance.api
         val repository = AccountRepository(api)
-        viewModel = ViewModelProvider(this, AccountViewModelFactory(repository))
-            .get(AccountViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            AccountViewModelFactory(repository)
+        )[AccountViewModel::class.java]
 
         setupWindowInsets()
         setupRecyclerView()
         setupObservers()
         setupCategoryDropdown()
 
-        viewModel.fetchAccountIds()
         binding.textInputSublayout.visibility = View.GONE
     }
 
@@ -86,17 +87,27 @@ class AlternateNamesActivity : AppCompatActivity() {
             setAdapter(dropdownAdapter)
             setOnItemClickListener { _, _, position, _ ->
                 val selectedCategory = categories[position]
-                filterItems(selectedCategory)
+                handleCategorySelection(selectedCategory)
                 handleSubcategoryVisibility(selectedCategory)
             }
             if (categories.isNotEmpty()) setText(categories[0], false)
         }
     }
 
+    private fun handleCategorySelection(category: String) {
+        when (category) {
+            "Accounts" -> {
+                viewModel.fetchAccountIds()
+            }
+
+            "Charges", "Items" -> {
+
+            }
+        }
+    }
+
     private fun handleSubcategoryVisibility(category: String) {
-        binding.textInputSublayout.visibility = if (category != "All" &&
-            subcategoriesMap.containsKey(category) &&
-            subcategoriesMap[category]?.isNotEmpty() == true) {
+        binding.textInputSublayout.visibility = if (subcategoriesMap.containsKey(category)) {
             setupSubcategoryDropdown(category)
             View.VISIBLE
         } else {
@@ -104,29 +115,60 @@ class AlternateNamesActivity : AppCompatActivity() {
         }
     }
 
+//    private fun setupSubcategoryDropdown(category: String) {
+//        val subcategories = subcategoriesMap[category] ?: emptyList()
+//        val subAdapter = ArrayAdapter(
+//            this,
+//            R.layout.simple_spinner_dropdown_item,
+//            subcategories
+//        ).apply {
+//            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        }
+//
+//        binding.spinnerItemsSubCategory.apply {
+//            setAdapter(subAdapter)
+//            setOnItemClickListener { _, _, position, _ ->
+//                val selectedSubcategory = subcategories[position]
+//                onSubcategorySelected(category, selectedSubcategory )
+//                showFilterSnackbar(category, selectedSubcategory)
+//            }
+//            setText("", false)
+//        }
+//    }
+
     private fun setupSubcategoryDropdown(category: String) {
-        val subcategories = subcategoriesMap[category] ?: emptyList()
+        val subcategories = (subcategoriesMap[category] ?: emptyList()) as List<Item>
+
         val subAdapter = ArrayAdapter(
             this,
-            R.layout.simple_spinner_dropdown_item,
+            R.layout.dropdown_item,
             subcategories
-        ).apply {
-            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
+        )
 
         binding.spinnerItemsSubCategory.apply {
             setAdapter(subAdapter)
             setOnItemClickListener { _, _, position, _ ->
-                val selectedSubcategory = subcategories[position]
-                filterBySubcategory(category, selectedSubcategory)
-                showFilterSnackbar(category, selectedSubcategory)
+                val selected = subcategories[position]
+                Toast.makeText(context, "Selected ID: ${selected.id}", Toast.LENGTH_SHORT).show()
+                onSubcategorySelected(category, selected.name, selected.id)
             }
             setText("", false)
         }
     }
+    private fun onSubcategorySelected(category: String, subcategory: String, actId : Int) {
+        if (category == "Accounts") {
+
+            Log.d("Testingabced", actId.toString())
+            viewModel.fetchAlternateNameById("accounts", actId)
+        } else {
+
+            filterBySubcategory(category, subcategory)
+        }
+    }
 
     private fun showFilterSnackbar(category: String, subcategory: String) {
-        Snackbar.make(binding.root, "Filtering by: $category > $subcategory", Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(binding.root, "Filtering by: $category > $subcategory", Snackbar.LENGTH_SHORT)
+            .show()
     }
 
     private fun setupRecyclerView() {
@@ -135,7 +177,7 @@ class AlternateNamesActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@AlternateNamesActivity)
             adapter = this@AlternateNamesActivity.adapter
         }
-        adapter.submitList(allItems)
+        adapter.submitList(emptyList())
     }
 
     private fun setupObservers() {
@@ -143,8 +185,26 @@ class AlternateNamesActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.accountNames.collect { accountNames ->
-                        updateSubcategories(accountNames)
+
+                        Log.d("Abcde", accountNames.toString())
+
+                        val list = accountNames.map { Item(it.actName, it.actId) }
+
+                        Log.d("Abcde", list.toString())
+
+                        subcategoriesMap["Accounts"] = list
+
+                        if (binding.spinnerItems.text.toString() == "Accounts") {
+                            setupSubcategoryDropdown("Accounts")
+                        }
                         binding.tvItemCount.text = accountNames.size.toString()
+                    }
+                }
+
+                launch {
+                    viewModel.alternateNameByIds.observe(this@AlternateNamesActivity) { alternateNames ->
+                        adapter.submitList(alternateNames)
+                        binding.tvItemCount.text = alternateNames.size.toString()
                     }
                 }
 
@@ -154,30 +214,23 @@ class AlternateNamesActivity : AppCompatActivity() {
                     }
                 }
 
-
                 launch {
                     viewModel.error.collect { error ->
-                        error?.let { Toast.makeText(this@AlternateNamesActivity, it, Toast.LENGTH_LONG).show() }
+                        error?.let {
+                            Toast.makeText(
+                                this@AlternateNamesActivity,
+                                it,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
                 }
             }
         }
     }
 
-    private fun updateSubcategories(accountNames: List<String>) {
-        subcategoriesMap["Accounts"] = accountNames
-        if (binding.spinnerItems.text.toString() == "Accounts") {
-            setupSubcategoryDropdown("Accounts")
-        }
-    }
-
-    private fun filterItems(category: String) {
-        val filteredList = if (category == "All") allItems else allItems.filter { it.category == category }
-        adapter.submitList(filteredList)
-        binding.tvItemCount.text = filteredList.size.toString()
-    }
-
     private fun filterBySubcategory(category: String, subcategory: String) {
+        // This is now only used for non-Accounts categories
         val filteredList = allItems.filter {
             it.category == category && it.name.contains(subcategory, ignoreCase = true)
         }
