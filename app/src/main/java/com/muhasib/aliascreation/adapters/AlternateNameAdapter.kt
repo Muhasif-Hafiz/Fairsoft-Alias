@@ -9,17 +9,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.muhasib.aliascreation.databinding.ItemAlternateNameBinding
 import com.muhasib.aliascreation.model.AlternateName
+import com.muhasib.aliascreation.model.AlternateNameData
 
 class AlternateNameAdapter(
-    private val onClickListener: (AlternateName) -> Unit
+    private val onClickListener: (AlternateNameData) -> Unit
 )
-    : ListAdapter<AlternateName, AlternateNameAdapter.ViewHolder>(DiffCallback()) {
+    : ListAdapter<AlternateNameData, AlternateNameAdapter.ViewHolder>(DiffCallback()) {
 
     inner class ViewHolder(private val binding: ItemAlternateNameBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: AlternateName) {
+        fun bind(item: AlternateNameData) {
             binding.tvAccountName
-                .text = item.name
+                .text = item.actName
             binding.ivDeleteIcon.setOnClickListener {
                 onClickListener(item)
             }
@@ -36,12 +37,12 @@ class AlternateNameAdapter(
         holder.bind(getItem(position))
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<AlternateName>() {
-        override fun areItemsTheSame(oldItem: AlternateName, newItem: AlternateName): Boolean {
-            return oldItem.name == newItem.name
+    class DiffCallback : DiffUtil.ItemCallback<AlternateNameData>() {
+        override fun areItemsTheSame(oldItem: AlternateNameData, newItem: AlternateNameData): Boolean {
+            return oldItem.actName == newItem.actName
         }
 
-        override fun areContentsTheSame(oldItem: AlternateName, newItem: AlternateName): Boolean {
+        override fun areContentsTheSame(oldItem: AlternateNameData, newItem: AlternateNameData): Boolean {
             return oldItem == newItem
         }
     }

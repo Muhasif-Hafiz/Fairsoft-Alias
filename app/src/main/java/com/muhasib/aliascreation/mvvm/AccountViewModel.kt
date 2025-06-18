@@ -1,12 +1,12 @@
 package com.muhasib.aliascreation.mvvm
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.muhasib.aliascreation.model.Account
 import com.muhasib.aliascreation.model.AlternateName
+import com.muhasib.aliascreation.model.AlternateNameData
 import com.muhasib.aliascreation.model.AlternateNameResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,8 +26,8 @@ class AccountViewModel(
     val error: StateFlow<String?> = _error
 
     // For alternate names
-    private val _alternateNamesByIds = MutableLiveData<List<AlternateName>>()
-    val alternateNameByIds: LiveData<List<AlternateName>> = _alternateNamesByIds
+    private val _alternateNamesByIds = MutableLiveData<List<AlternateNameData>>()
+    val alternateNameByIds: LiveData<List<AlternateNameData>> = _alternateNamesByIds
 
     fun fetchAccountIds() {
         viewModelScope.launch {
@@ -35,8 +35,6 @@ class AccountViewModel(
             _error.value = null
             try {
               _accountNames.value = repository.getAccountNames()
-
-                Log.d("testing", repository.getAccountNames().toString())
             } catch (e: Exception) {
                 _error.value = "Failed to fetch IDs: ${e.message}"
             } finally {
@@ -59,10 +57,16 @@ class AccountViewModel(
                 }
 
                 val alternateNames = response.data.map { data ->
-                    AlternateName(
-                        name = data.actName,
-                        category = type,
-                        id = data.actId.toString(),
+                    AlternateNameResponse(
+                        message = response.message,
+                        data = response.data
+                    )
+                    AlternateNameData(
+                        actName = data.actName,
+                        actId = data.actId,
+                        gstNumber = data.gstNumber,
+                        createdDate = data.createdDate,
+                        altId = data.altId
                     )
                 }
 
@@ -72,6 +76,24 @@ class AccountViewModel(
                 _error.value = "Failed to fetch alternate names: ${e.message}"
             } finally {
                 _loading.value = false
+            }
+        }
+    }
+
+    // delete viewModel
+
+    private val _deleteStatus = MutableLiveData<String>()
+    val deleteStatus: LiveData<String> = _deleteStatus
+    private val _errorState = MutableLiveData<String>()
+    val errorState: LiveData<String> = _errorState
+
+    fun deleteAlternateName( type: String, altId: Int) {
+        viewModelScope.launch {
+            try {
+                val response = repository.deleteAlternateName("NADCF2025", type, altId)
+                _deleteStatus.value = response.message // You can use LiveData or StateFlow
+            } catch (e: Exception) {
+                _errorState.value = e.localizedMessage ?: "Unexpected error"
             }
         }
     }

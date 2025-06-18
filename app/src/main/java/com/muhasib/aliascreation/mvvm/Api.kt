@@ -2,7 +2,9 @@ package com.muhasib.aliascreation.mvvm
 
 import com.muhasib.aliascreation.model.Account
 import com.muhasib.aliascreation.model.AlternateNameResponse
+import com.muhasib.aliascreation.model.DeleteAlternateNameResponse
 import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -16,7 +18,6 @@ interface Api {
     suspend fun getAccounts(): retrofit2.Response<String>
 
     @GET("GetAlternateNamesById/{compCode}/{type}/{actId}")
-
     suspend fun getAlternateNamesById(
         @Path("compCode")  compCode : String,
         @Path("type"    )   type    : String,
@@ -24,4 +25,12 @@ interface Api {
         @Header("x-api-key") apiKey: String
 
     ) : Response<AlternateNameResponse>
+
+    @DELETE("DeleteAlternateName/{compCode}/{type}/{altId}")
+    suspend fun deleteAlternateName(
+        @Path("compCode") compCode: String,
+        @Path("type") type: String,
+        @Path("altId") altId: Int,
+        @Header("x-api-key") apiKey: String
+    )  : Response<DeleteAlternateNameResponse>
 }
