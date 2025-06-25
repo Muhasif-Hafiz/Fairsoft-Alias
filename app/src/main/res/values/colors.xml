@@ -11,6 +11,10 @@
     <color name="blue_dark">#1976D2</color>
     <color name="verifiedText">#2E7D32</color>
     <color name="verifiedBackground">#E8F5E9</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="light_gray">#FAFAFA</color>
+    <color name="primary_light">#F3E5F5</color>
     <color name="notVerifiedText">#C62828</color>
     <color name="notVerifiedBackground">#FFEBEE</color>
     <color name="ReferPrimary">#3385FF</color>

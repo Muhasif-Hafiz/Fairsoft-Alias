@@ -32,5 +32,9 @@ class CenterActivity : AppCompatActivity() {
         binding.AlternateNames.setOnClickListener {
             startActivity(Intent(this, AlternateNamesActivity::class.java))
         }
+        binding.FeaturedAccounts.setOnClickListener {
+            startActivity(Intent(this, FeaturedAccountActivity::class.java))
+        }
+
     }
 }
