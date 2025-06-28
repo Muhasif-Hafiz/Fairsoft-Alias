@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -14,11 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AliasCreation"
         tools:targetApi="31">
+
+
+
+
         <activity
             android:name=".activity.FeaturedAccountActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:label="@string/featured_accounts_display">
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -30,10 +33,9 @@
                 <data android:pathPrefix="/featured" />
 
                 <data android:autoVerify="true" />
+
             </intent-filter>
-            <meta-data
-                android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts" />
+
         </activity>
         <activity
             android:name=".activity.AlternateNamesActivity"
@@ -56,6 +58,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name=".activity.UserDetailsActivity"
@@ -66,16 +71,9 @@
             android:name=".activity.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="android.app.shortcuts"
-            android:resource="@xml/shortcuts" />
     </application>
 
 </manifest>

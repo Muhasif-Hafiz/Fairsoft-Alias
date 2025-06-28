@@ -11,7 +11,8 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="user_name">Name <font color='#FF0000'>*</font></string>
-    <string name="open_alias_feature">Open Alias Feature</string>
+    <string name="open_featured_accounts">Open Feature Accounts</string>
+
     <string name="Alias">Alias</string>
     <string name="number">Number <font color='#FF0000'>*</font></string>
     <string name="mail_id">Mail ID </string>
@@ -31,6 +32,6 @@
 
     <string name="show_featured_accounts">Show featured accounts</string>
     <string name="featured_accounts">featured_accounts</string>
-    <string name="featured_accounts_display">Featured Accounts</string>
+    <string name="featured_accounts_display">Featured</string>
 
 </resources>
