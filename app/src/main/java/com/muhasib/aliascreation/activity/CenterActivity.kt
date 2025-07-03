@@ -45,5 +45,8 @@ class CenterActivity : AppCompatActivity() {
             startActivity(Intent(this, FeaturedAccountActivity::class.java))
         }
 
+        binding.dynamicFeatures.setOnClickListener {
+            startActivity(Intent(this, DynamicFeatureActivity::class.java))
+        }
     }
 }

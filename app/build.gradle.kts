@@ -13,8 +13,8 @@ android {
         applicationId = "com.muhasib.aliascreation"
         minSdk = 26
         targetSdk = 35
-        versionCode = 5
-        versionName = "1.0.5"
+        versionCode = 6
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,6 +40,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dynamicFeatures += setOf(":onDemand", ":OnInstall")
 }
 
 dependencies {
@@ -80,4 +81,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+  //  implementation("com.google.android.play:core:1.10.4")
+
+  //  implementation ("com.google.android.play:core:1.10.6")
+
+    implementation ("com.google.android.play:app-update:2.1.0") // For in-app updates
+    implementation ("com.google.android.play:review:2.0.1")
+
+    implementation ("com.google.android.play:feature-delivery:2.1.0")
+
+
+
+
 }
+

@@ -15,27 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AliasCreation"
         tools:targetApi="31">
-
-
-
-
+        <activity
+            android:name=".activity.DynamicFeatureActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.FeaturedAccountActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="http" />
                 <data android:scheme="https" />
                 <data android:host="muhasib.aliascreation.com" />
                 <data android:pathPrefix="/featured" />
-
                 <data android:autoVerify="true" />
-
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.AlternateNamesActivity"
@@ -58,6 +55,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
@@ -70,10 +68,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>

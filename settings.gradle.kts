@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Alias Creation"
 include(":app")
+include(":onDemand")
+include(":OnInstall")

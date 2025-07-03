@@ -33,5 +33,7 @@
     <string name="show_featured_accounts">Show featured accounts</string>
     <string name="featured_accounts">featured_accounts</string>
     <string name="featured_accounts_display">Featured</string>
+    <string name="title_oninstall">OnInstall</string>
+    <string name="title_ondemand">OnDemand</string>
 
 </resources>
