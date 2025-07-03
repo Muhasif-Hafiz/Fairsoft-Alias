@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entities>
+    <entity-set entitySetId="FeatureEntitySet">
+        <entity identifier="featured_accounts" name="Featured Accounts">
+
+            <synonym>accounts</synonym>
+            <synonym>featured</synonym>
+            <synonym>featured accounts</synonym>
+        </entity>
+    </entity-set>
+</entities>
